@@ -12,20 +12,6 @@ void power(int number, int source, int target);
 
 int main()
 {
-    //for (int i = 2; i <= 10; i++)
-    //{
-    //    for (int j = 2; j <= 36; j++)
-    //    {
-    //        printf("source = %d, power = %d\n", i, j);
-    //        power(1000000000, i, j);
-    //        printf("\n");
-    //    }
-    //}
-    //printf("%d\n", -(int)2147483648);
-    //power(-(int)2147483647, 10, 2);
-    //power(-(int)2147483648, 10, 2);
-    //power(-1111, 2, 16);
-
     return 0;
 }
 
