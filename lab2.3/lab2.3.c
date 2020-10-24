@@ -12,8 +12,6 @@ void power(int number, int source, int target);
 
 int main()
 {
-    power(-(int)2147483648, 10, 2);
-
     return 0;
 }
 
@@ -113,11 +111,11 @@ void power(int number, int source, int target)
 {
     if ((source >= 11) || (source <= 1))
     {
-        printf("Error: source >= 11 or source <= 1");
+        printf("Error: source >= 11 or source <= 1\n");
     }
     else if ((target >= 32) || (target <= 1))
     {
-        printf("Error: target >= 32 || target <= 1");
+        printf("Error: target >= 32 or target <= 1\n");
     }
     else if (source == target)
     {
