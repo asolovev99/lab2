@@ -1,21 +1,23 @@
 #include <stdio.h>
 
-int nth_power_of_number(int power_of_number, int number);
+int exponentiation(int power_of_number, int number);
 
 char int_to_char(int number);
 
-char* from_10th_to_targetth(int number, int target, char* target_number);
+char* from_10_numeral_system_to_target_numeral_system(int number, int target, char* target_number);
 
-int from_sourceth_to_10th(int source, int number);
+int from_source_numeral_system_to_10_numeral_system(int source, int number);
 
 void power(int number, int source, int target);
 
 int main()
 {
+    power(-(int)2147483648, 10, 2);
+
     return 0;
 }
 
-int nth_power_of_number(int power_of_number, int number)
+int exponentiation(int power_of_number, int number)
 {
     int result = 1;
 
@@ -45,15 +47,16 @@ char int_to_char(int number)
     }
 }
 
-char* from_10th_to_targetth(int number, int target, char* target_number)
+char* from_10_numeral_system_to_target_numeral_system(int number, int target, char* target_number)
 {
     const int length_of_array = 34;
     int current_index = length_of_array - 2;
+    int sign = 1;
 
     if (number < 0)
     {
         target_number[0] = '-';
-        number *= -1;
+        sign = -1;
     }
 
     if (number == 0)
@@ -63,14 +66,14 @@ char* from_10th_to_targetth(int number, int target, char* target_number)
     }
     else
     {
-        while (number > 0)
+        while (number != 0)
         {
-            target_number[current_index] = int_to_char(number % target);
+            target_number[current_index] = int_to_char(number % target * sign);
             number = number / target;
             current_index--;
         }
 
-        if (target_number[0] == '-')
+        if (sign == -1)
         {
             for (int i = 1; i <= length_of_array - 2 - current_index; i++)
             {
@@ -91,47 +94,47 @@ char* from_10th_to_targetth(int number, int target, char* target_number)
     return target_number;
 }
 
-int from_sourceth_to_10th(int source, int number)
+int from_source_numeral_system_to_10_numeral_system(int source, int number)
 {
     int result = 0;
-    int digit = 0;
-    int sign = 1;
+    int current_digit = 0;
 
-    if (number < 0)
+    while (number != 0)
     {
-        sign = -1;
-        number *= -1;
-    }
-
-    while (number > 0)
-    {
-        result += (number % 10) * nth_power_of_number(digit, source);
+        result += (number % 10) * exponentiation(current_digit, source);
         number = number / 10;
-        digit++;
+        current_digit++;
     }
-    result *= sign;
 
     return result;
 }
 
 void power(int number, int source, int target)
 {
-    if (source == target)
+    if ((source >= 11) || (source <= 1))
+    {
+        printf("Error: source >= 11 or source <= 1");
+    }
+    else if ((target >= 32) || (target <= 1))
+    {
+        printf("Error: target >= 32 || target <= 1");
+    }
+    else if (source == target)
     {
         printf("%d\n", number);
     }
     else if (source == 10)
     {
-        char target_number[33];
-        printf("%s\n", from_10th_to_targetth(number, target, target_number));
+        char target_number[34];
+        printf("%s\n", from_10_numeral_system_to_target_numeral_system(number, target, target_number));
     }
     else if (target == 10)
     {
-        printf("%d\n", from_sourceth_to_10th(source, number));
+        printf("%d\n", from_source_numeral_system_to_10_numeral_system(source, number));
     }
     else
     {
         char target_number[34];
-        printf("%s\n", from_10th_to_targetth(from_sourceth_to_10th(source, number), target, target_number));
+        printf("%s\n", from_10_numeral_system_to_target_numeral_system(from_source_numeral_system_to_10_numeral_system(source, number), target, target_number));
     }
 }
