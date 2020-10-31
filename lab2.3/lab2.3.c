@@ -4,6 +4,8 @@ int exponentiation(int power_of_number, int number);
 
 char int_to_char(int number);
 
+int is_number_correct(int number, int source);
+
 char* from_10_numeral_system_to_target_numeral_system(int number, int target, char* target_number);
 
 int from_source_numeral_system_to_10_numeral_system(int source, int number);
@@ -43,6 +45,27 @@ char int_to_char(int number)
 
         return -1;
     }
+}
+
+int is_number_correct(int number, int numeral_system)
+{
+    int sign = 1;
+    
+    if (number < 0)
+    {
+        sign = -1;
+    }
+
+    while (number != 0)
+    {
+        if (number % 10 * sign >= numeral_system)
+        {
+            return 0;
+        }
+        number /= 10;
+    }
+
+    return 1;
 }
 
 char* from_10_numeral_system_to_target_numeral_system(int number, int target, char* target_number)
@@ -116,6 +139,10 @@ void power(int number, int source, int target)
     else if ((target >= 32) || (target <= 1))
     {
         printf("Error: target >= 32 or target <= 1\n");
+    }
+    else if (is_number_correct(number, source))
+    {
+        printf("Error: wrong number or source numeral system (digit of number >= source)");
     }
     else if (source == target)
     {

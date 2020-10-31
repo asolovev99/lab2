@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 long long get_fibbonachi_via_cycle(int number);
 
 int main()
@@ -10,6 +12,12 @@ long long get_fibbonachi_via_cycle(int number)
     int first = 0;
     int second = 1;
 
+    if (number <= 0)
+    {
+        printf("Wrong index");
+
+        return -1;
+    }
     if (number == 1)
     {
         return first;
