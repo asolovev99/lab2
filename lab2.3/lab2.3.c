@@ -1,4 +1,5 @@
 #include <stdio.h>
+#define length_of_array 34
 
 int exponentiation(int power_of_number, int number);
 
@@ -70,7 +71,6 @@ int is_number_correct(int number, int numeral_system)
 
 char* from_10_numeral_system_to_target_numeral_system(int number, int target, char* target_number)
 {
-    const int length_of_array = 34;
     int current_index = length_of_array - 2;
     int sign = 1;
 
@@ -150,7 +150,7 @@ void power(int number, int source, int target)
     }
     else if (source == 10)
     {
-        char target_number[34];
+        char target_number[length_of_array];
         printf("%s\n", from_10_numeral_system_to_target_numeral_system(number, target, target_number));
     }
     else if (target == 10)
@@ -159,7 +159,7 @@ void power(int number, int source, int target)
     }
     else
     {
-        char target_number[34];
+        char target_number[length_of_array];
         printf("%s\n", from_10_numeral_system_to_target_numeral_system(from_source_numeral_system_to_10_numeral_system(source, number), target, target_number));
     }
 }
