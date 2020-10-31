@@ -140,9 +140,9 @@ void power(int number, int source, int target)
     {
         printf("Error: target >= 32 or target <= 1\n");
     }
-    else if (is_number_correct(number, source))
+    else if (!is_number_correct(number, source))
     {
-        printf("Error: wrong number or source numeral system (digit of number >= source)");
+        printf("Error: wrong number or source numeral system (digit of number >= source)\n");
     }
     else if (source == target)
     {
